@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import GrandParent from './components/GrandParent';
+import Index from './strictMode/Index'
+import Timer from './strictMode/Timer';
 import './App.css'
 
 function App() {
@@ -13,15 +15,25 @@ function App() {
         setCount(prevCount => prevCount - 1)
     }
 
-    console.log("[GP] [P] [C] [GC] APP just rendered")
+    const [showTimer, setShowTimer] = useState(false)
+
+  function toggleTimer() {
+    setShowTimer(prev => !prev)
+  }
+
     return (
         <div>
-            <button onClick={decrement}>-1</button>
+            {/* <button onClick={decrement}>-1</button>
             <button onClick={increment}>+1</button>
             <h2>{count}</h2>
             <p>App component</p>
             <GrandParent count={count} />
-            <GrandParent />
+            <GrandParent /> */}
+            <Index />
+            {/* <button className="button" onClick={toggleTimer}>{showTimer ? "Hide" : "Show"} Timer</button>
+      {showTimer && */}
+        {/* <Timer /> */}
+      
         </div>
     )
 }
