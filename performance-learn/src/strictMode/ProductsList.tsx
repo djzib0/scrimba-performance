@@ -1,7 +1,7 @@
 import Product from "./Product"
 import productsData from "./data"
 
-export default function ProductList() {
+export default function ProductsList() {
     return productsData.map(product => (
         <Product key={product.id} product={product} />
     ))

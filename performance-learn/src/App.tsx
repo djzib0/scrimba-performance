@@ -2,6 +2,7 @@ import { useState } from 'react';
 import GrandParent from './components/GrandParent';
 import Index from './strictMode/Index'
 import Timer from './strictMode/Timer';
+import MemoIndex from './useMemo/MemoIndex';
 import './App.css'
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
             <p>App component</p>
             <GrandParent count={count} />
             <GrandParent /> */}
-            <Index />
+            <MemoIndex />
             {/* <button className="button" onClick={toggleTimer}>{showTimer ? "Hide" : "Show"} Timer</button>
       {showTimer && */}
         {/* <Timer /> */}

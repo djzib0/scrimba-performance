@@ -1,12 +1,10 @@
-import React from 'react';
-
-const ProductList = React.lazy(() => {
-  return import("./ProductList")
-})
+import React from "react"
+import Product from "./Product"
+import productsData from "./data"
+import { slowCountItems } from "./utils"
 
 export default function Index() {
   const [count, setCount] = React.useState(0)
-  const [showProducts, setShowProducts] = React.useState(false)
 
   function increment() {
     setCount(prevCount => prevCount + 1)
@@ -15,27 +13,27 @@ export default function Index() {
   function decrement() {
     setCount(prevCount => prevCount - 1)
   }
+  
+  const productsCount = React.useMemo(() => {
+    return slowCountItems(productsData, 500)
+  }, [productsData])
+  
+  // const productsCount = slowCountItems(productsData, 500)
 
   return (
     <>
       <h1>The current count is {count}</h1>
-      <button className="button" onClick={decrement}>
-        -
-            </button>
-      <button className="button" onClick={increment}>
-        +
-      </button>
-      <br />
-      <button
-        className="button"
-        onClick={() => setShowProducts(prev => !prev)}
-      >
-        Show Products
-            </button>
+      <button className="button" onClick={decrement}>-</button>
+      <button className="button" onClick={increment}>+</button>
       <br />
       <br />
+      <h2>There are {productsCount} products</h2>
       <div className="products-list">
-        {showProducts && <ProductsList />}
+        {
+          productsData.map(product => (
+            <Product key={product.id} product={product} />
+          ))
+        }
       </div>
     </>
   )
